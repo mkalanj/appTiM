@@ -12,7 +12,7 @@
             </div>
             <div class="pull-right">
                 <br>
-                <a class="btn btn-success" href="{{ route('cjenik.create') }}"> Kreiraj novu rezervaciju</a>
+                <a class="btn btn-success" href="{{ route('rezervacija.create') }}"> Kreiraj novu rezervaciju</a>
             </div>
         </div>
     </div>
@@ -41,13 +41,18 @@
     @foreach ($rezervacijas as $key => $rezervacija)
     <tr>
         <td>{{ ++$i }}</td>
-        <td>{{ $rezervacija->Broj osoba }}</td>
+        <td>{{ $rezervacija->Broj_osoba }}</td>
          <td>{{ $rezervacija->Datum }}</td>
-          <td>{{ $rezervacija->Opis }}</td>
+          <td>{{ $rezervacija->Vrijeme }}</td>
+             <td>{{ $rezervacija->ime_korisnika }}</td>
+                <td>{{ $rezervacija->prezime_korisnika }}</td>
+                   <td>{{ $rezervacija->broj_teelefona}}</td>
+                      <td>{{ $rezervacija->email_korisnika }}</td>
+                         <td>{{ $rezervacija->napomena }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('cjenik.show',$cjenik->id) }}">Prikaz</a>
-            <a class="btn btn-primary" href="{{ route('cjenik.edit',$cjenik->id) }}">Izmjena</a>
-            {!! Form::open(['method' => 'DELETE','route' => ['cjenik.destroy', $cjenik->id],'style'=>'display:inline']) !!}
+            <a class="btn btn-info" href="{{ route('rezervacija.show',$rezervacija->id) }}">Prikaz</a>
+            <a class="btn btn-primary" href="{{ route('rezervacija.edit',$rezervacija->id) }}">Izmjena</a>
+            {!! Form::open(['method' => 'DELETE','route' => ['rezervacija.destroy', $rezervacija->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Obrisi', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         </td>
@@ -56,7 +61,7 @@
     </table>
 
 
-    {!! $cjeniks->render() !!}
+    {!! $rezervacijas->render() !!}
 
 
 @endsection

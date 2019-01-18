@@ -23,8 +23,7 @@ class CreateRezervacijasTable extends Migration
             $table->string('broj_telefona');
             $table->string('email_korisnika');
             $table->string('napomena');
-            $table->boolean('istatus_rezervacije');
-            
+            $table->boolean('status_rezervacije')->default(false);
             $table->timestamps();
         });
     }
