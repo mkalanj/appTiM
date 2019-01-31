@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\stavke_cjenika;
+use App\Stavke_cjenika;
 
 class CjenikController extends Controller
 {
@@ -15,7 +15,7 @@ class CjenikController extends Controller
      */
     public function index(Request $request)
     {
-        $cjeniks = stavke_cjenika::orderBy('id','DESC')->paginate(5);
+        $cjeniks = Stavke_cjenika::orderBy('id','DESC')->paginate(5);
         return view('cjenik.index',compact('cjeniks'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -45,7 +45,7 @@ class CjenikController extends Controller
         ]);
 
 
-        stavke_cjenika::create($request->all());
+        Stavke_cjenika::create($request->all());
 
         return redirect()->route('cjenik.index')
                         ->with('success','Stavke cjenika dodane');
@@ -59,7 +59,7 @@ class CjenikController extends Controller
      */
     public function show($id)
     {
-          $cjenik = stavke_cjenika::find($id);
+          $cjenik = Stavke_cjenika::find($id);
         return view('cjenik.show',compact('cjenik'));
     }
 
@@ -71,7 +71,7 @@ class CjenikController extends Controller
      */
     public function edit($id)
     {
-       $cjenik = stavke_cjenika::find($id);
+       $cjenik = Stavke_cjenika::find($id);
         return view('cjenik.edit',compact('cjenik'));
     }
 
@@ -91,7 +91,7 @@ class CjenikController extends Controller
         ]);
 
 
-        stavke_cjenika::find($id)->update($request->all());
+        Stavke_cjenika::find($id)->update($request->all());
 
         return redirect()->route('cjenik.index')
                         ->with('success','Stavke uspjesno azurirane');
@@ -105,7 +105,7 @@ class CjenikController extends Controller
      */
     public function destroy($id)
     {
-        stavke_cjenika::find($id)->delete();
+        Stavke_cjenika::find($id)->delete();
         return redirect()->route('cjenik.index')
                         ->with('success','Stavke uspjesno obrisane');
     }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\rezervacija;
+use App\Rezervacija;
 
 class RezervacijaController extends Controller
 {
@@ -12,9 +12,11 @@ class RezervacijaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    
     public function index(Request $request)
     {
-        $rezervacijas = rezervacija::orderBy('id','DESC')->paginate(5);
+        $rezervacijas = Rezervacija::orderBy('id','DESC')->paginate(5);
         return view('rezervacija.index',compact('rezervacijas'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -28,7 +30,20 @@ class RezervacijaController extends Controller
     {
         return view('rezervacija.create');
     }
-
+ public function postApprove($id) {
+     
+     
+    $rezervacija = rezervacija::where('id', '=', e($id))->first();
+    if($rezervacija)
+    {
+        $rezervacija->status_rezervacije = 1;
+        $rezervacija->save();
+        //return a view or whatever you want tto do after
+    }
+     return redirect()->route('rezervacija.index')
+                        ->with('success','Stavke uspjesno obrisane');
+    
+ }
     /**
      * Store a newly created resource in storage.
      *
@@ -40,7 +55,6 @@ class RezervacijaController extends Controller
         $this->validate($request, [
             'broj_osoba' => 'required',
             'datum' => 'required',
-            'vrijeme' => 'required',
             'ime_korisnika' => 'required',
             'prezime_korisnika' => 'required',
             'broj_telefona' => 'required',
@@ -48,7 +62,7 @@ class RezervacijaController extends Controller
             'napomena' => 'required',
         ]);
 
-
+        
         rezervacija::create($request->all());
 
         return redirect()->route('rezervacija.index')
@@ -72,9 +86,17 @@ class RezervacijaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $rezervacija = rezervacija::where('id', '=', e($id))->first();
+    if($rezervacija)
+    {
+        $rezervacija->Status = 'Odbijena';
+        $rezervacija->save();
+        //return a view or whatever you want tto do after
+    }
+     return redirect()->route('rezervacija.index')
+                        ->with('success','Rezervacija odbijena');
     }
 
     /**
@@ -86,7 +108,32 @@ class RezervacijaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+             
+    $rezervacija = Rezervacija::where('id', '=', e($id))->first();
+    if($rezervacija)
+    {
+        $rezervacija->Status = 'Odobrena';
+        $rezervacija->save();
+        //return a view or whatever you want tto do after
+    }
+     return redirect()->route('rezervacija.index')
+                        ->with('success','Rezervacija odobrena');
+    
+    }
+    
+    public function update2($id)
+    {
+             
+    $rezervacija = Rezervacija::where('id', '=', e($id))->first();
+    if($rezervacija)
+    {
+        $rezervacija->Status = 'Odbijeno';
+        $rezervacija->save();
+        //return a view or whatever you want tto do after
+    }
+     return redirect()->route('rezervacija.index')
+                        ->with('success','Rezervacija odbijena');
+    
     }
 
     /**
@@ -97,6 +144,8 @@ class RezervacijaController extends Controller
      */
     public function destroy($id)
     {
-        //
+         rezervacija::find($id)->delete();
+        return redirect()->route('rezervacija.index')
+                        ->with('success','Rezervacija odbijena i obrisana');
     }
 }

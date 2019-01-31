@@ -13,6 +13,7 @@
             <div class="pull-right">
                 <br>
                 <a class="btn btn-success" href="{{ route('cjenik.create') }}"> Kreiraj novu stavku</a>
+                <br><br>
             </div>
         </div>
     </div>

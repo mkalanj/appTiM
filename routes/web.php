@@ -15,8 +15,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/dynamic_pdf', 'IzvjestajController@index');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/approval', 'HomeController@approval')->name('approval');
+    
+      Route::middleware(['approved'])->group(function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+});
+  Route::middleware(['admin'])->group(function () {
+        Route::get('/users', 'UserController@index')->name('admin.users.index');
+        Route::get('/users/{user_id}/approve', 'UserController@approve')->name('admin.users.approve');
+});
+});
+
 Route::resource('cjenik','CjenikController');
+Route::get('rezervacija/update2/{id}','RezervacijaController@update2');
 Route::resource('rezervacija','RezervacijaController');
+
+
+
+

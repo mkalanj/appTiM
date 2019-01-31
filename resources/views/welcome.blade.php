@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Restoran T&M</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -13,7 +13,7 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-color: #ddd;
                 color: #636b6f;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
@@ -72,20 +72,21 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/register') }}">Registriraj se</a>
                     @endif
                 </div>
+            
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Dobrodosli u restoran TIM
+                    Dobrodosli u restoran T&M
                 </div>
 
                 <div class="links">
                     <a href="https://forge.laravel.com">O nama</a>
-                    <a href="http://127.0.0.1:8000/cjenik/1">Cjenik</a>
-                    <a href="https://laracasts.com">Rezerviraj stol</a>
+                    <a href="http://127.0.0.1:8000/cjenik">Cjenik</a>
+                    <a href="http://127.0.0.1:8000/rezervacija/create">Rezerviraj stol</a>
                     <a href="https://laravel-news.com">Naruci hranu</a>
                     <a href="https://github.com/laravel/laravel">Kontakt</a>
                 </div>

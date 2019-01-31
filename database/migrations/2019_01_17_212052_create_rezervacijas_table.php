@@ -16,14 +16,12 @@ class CreateRezervacijasTable extends Migration
         Schema::create('rezervacijas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('broj_osoba');
-            $table->date('datum');
-            $table->time('vrijeme');
             $table->string('ime_korisnika');
             $table->string('prezime_korisnika');
             $table->string('broj_telefona');
             $table->string('email_korisnika');
             $table->string('napomena');
-            $table->boolean('status_rezervacije')->default(false);
+            $table->boolean('status_rezervacije')->default(false)->change();
             $table->timestamps();
         });
     }

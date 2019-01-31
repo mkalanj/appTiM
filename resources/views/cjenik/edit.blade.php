@@ -8,8 +8,11 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
+                <br>
                 <h2>Izmjeni stavke cjenika</h2>
+                <br>
             </div>
+            <br>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('cjenik.index') }}"> Nazad </a>
             </div>
@@ -35,7 +38,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Title:</strong>
+                <strong>Naziv</strong>
                 {!! Form::text('Naziv_stavke_cjenika', null, array('placeholder' => 'Unesi naziv stavk cjenika','class' => 'form-control')) !!}
             </div>
         </div>
@@ -43,7 +46,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Cijena:</strong>
+                <strong>Cijena</strong>
                 {!! Form::textarea('Cijena', null, array('placeholder' => 'Unesi cjenu u kunama','class' => 'form-control','style'=>'height:100px')) !!}
             </div>
         </div>
@@ -51,14 +54,14 @@
         
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Opis:</strong>
+                <strong>Opis</strong>
                 {!! Form::textarea('Opis', null, array('placeholder' => 'Unesi opis','class' => 'form-control','style'=>'height:100px')) !!}
             </div>
         </div>
 
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Potvrdi</button>
+                <button type="submit" class="btn btn-success">Potvrdi</button>
         </div>
 
 

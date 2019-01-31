@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    
+        public function approval()
+{
+    return view('approval');
+}
     /**
      * Create a new controller instance.
      *
@@ -25,4 +30,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    
+
 }
